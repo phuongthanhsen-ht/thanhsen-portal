@@ -1,128 +1,1046 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>Cổng thông tin số phường Thành Sen</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UBND Phường Thành Sen - Hà Tĩnh</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    :root {
+      --primary: #c1121f;
+      --primary-dark: #8f0d17;
+      --secondary: #f9c74f;
+      --green: #0f7b3f;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --border: #e5e7eb;
+      --shadow: 0 12px 30px rgba(15, 23, 42, 0.10);
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      background: #f4f6f8;
-      color: #222;
+      padding: 0;
     }
 
-    header {
-      background: #b91c1c;
-      color: white;
-      padding: 30px 20px;
-      text-align: center;
+    html {
+      scroll-behavior: smooth;
     }
 
-    nav {
-      background: white;
-      padding: 12px;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    body {
+      font-family: "Be Vietnam Pro", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
     }
 
-    nav a {
-      margin: 0 10px;
+    a {
       text-decoration: none;
-      color: #b91c1c;
-      font-weight: bold;
     }
 
-    .container {
-      max-width: 1000px;
+    .topbar {
+      background: linear-gradient(90deg, var(--primary-dark), var(--primary));
+      color: #fff;
+      padding: 8px 20px;
+      font-size: 14px;
+    }
+
+    .topbar-inner {
+      max-width: 1180px;
       margin: auto;
-      padding: 25px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
     }
 
-    .card {
-      background: white;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 18px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    .navbar {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    .nav-inner {
+      max-width: 1180px;
+      margin: auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       gap: 16px;
     }
 
-    footer {
-      background: #111827;
-      color: white;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--primary);
+      font-weight: 900;
+    }
+
+    .brand-logo {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 22px;
+      box-shadow: 0 8px 18px rgba(193,18,31,0.25);
+    }
+
+    .brand-text small {
+      display: block;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 12px;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .menu a {
+      color: #374151;
+      font-weight: 700;
+      padding: 9px 12px;
+      border-radius: 999px;
+      font-size: 14px;
+    }
+
+    .menu a:hover {
+      background: #fee2e2;
+      color: var(--primary);
+    }
+
+    .hero {
+      min-height: 620px;
+      background:
+        radial-gradient(circle at top right, rgba(249,199,79,0.35), transparent 28%),
+        linear-gradient(135deg, rgba(193,18,31,0.94), rgba(15,123,63,0.92)),
+        url("https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?q=80&w=1600&auto=format&fit=crop");
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-inner {
+      max-width: 1180px;
+      margin: auto;
+      padding: 70px 20px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.16);
+      border: 1px solid rgba(255,255,255,0.28);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(34px, 5vw, 64px);
+      line-height: 1.12;
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 span {
+      color: var(--secondary);
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 740px;
+      opacity: 0.96;
+      margin-bottom: 26px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 800;
+      border: 0;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--secondary);
+      color: #7a1900;
+    }
+
+    .btn-light {
+      background: rgba(255,255,255,0.16);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.35);
+    }
+
+    .quick-stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(120px, 1fr));
+      gap: 14px;
+    }
+
+    .quick-stat {
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 18px;
+      padding: 16px;
+      backdrop-filter: blur(10px);
+    }
+
+    .quick-stat strong {
+      display: block;
+      font-size: 26px;
+      font-weight: 900;
+    }
+
+    .quick-stat span {
+      font-size: 13px;
+      opacity: 0.92;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.14);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 28px;
+      padding: 28px;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 25px 70px rgba(0,0,0,0.2);
+    }
+
+    .hero-card h3 {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .hero-card ul {
+      list-style: none;
+      margin-top: 18px;
+    }
+
+    .hero-card li {
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.18);
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .section {
+      max-width: 1180px;
+      margin: auto;
+      padding: 64px 20px;
+    }
+
+    .section-heading {
       text-align: center;
-      padding: 20px;
-      margin-top: 30px;
+      margin-bottom: 34px;
+    }
+
+    .section-heading .eyebrow {
+      display: inline-block;
+      color: var(--primary);
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 900;
+      color: #111827;
+    }
+
+    .section-heading p {
+      margin: 10px auto 0;
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border-radius: 22px;
+      padding: 24px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .stat-card i {
+      font-size: 34px;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .stat-card strong {
+      display: block;
+      font-size: 34px;
+      font-weight: 900;
+      color: var(--primary);
+    }
+
+    .stat-card span {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .feature-card {
+      background: #fff;
+      border-radius: 22px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 42px rgba(15, 23, 42, 0.14);
+    }
+
+    .feature-card i {
+      width: 50px;
+      height: 50px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: #fee2e2;
+      color: var(--primary);
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+
+    .feature-card h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .filter-box {
+      background: #fff;
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      margin-bottom: 22px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .filter-box input,
+    .filter-box select {
+      flex: 1;
+      min-width: 220px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      font-family: inherit;
+      font-size: 15px;
+      outline: none;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      overflow: hidden;
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .data-table th {
+      background: var(--primary);
+      color: #fff;
+      text-align: left;
+      padding: 14px;
+      font-size: 14px;
+    }
+
+    .data-table td {
+      padding: 14px;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    .data-table tr:hover td {
+      background: #fef2f2;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 5px 10px;
+      background: #ecfdf5;
+      color: #047857;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .chat-wrap {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .chat-info,
+    .chat-box {
+      background: #fff;
+      border-radius: 24px;
+      padding: 26px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .chat-info h3,
+    .chat-box h3 {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .suggestions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .suggestions button {
+      border: 1px solid #fecaca;
+      color: var(--primary);
+      background: #fff5f5;
+      padding: 8px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 700;
+      font-family: inherit;
+    }
+
+    .chat-input {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      font-family: inherit;
+      font-size: 15px;
+      outline: none;
+    }
+
+    .chat-input button {
+      background: var(--primary);
+      color: #fff;
+      border: 0;
+      border-radius: 16px;
+      padding: 0 18px;
+      font-weight: 900;
+      font-family: inherit;
+      cursor: pointer;
+    }
+
+    .answer {
+      margin-top: 18px;
+      background: #fef2f2;
+      border-left: 5px solid var(--primary);
+      border-radius: 16px;
+      padding: 16px;
+      color: #374151;
+      min-height: 80px;
+    }
+
+    .footer {
+      background: #111827;
+      color: #fff;
+      padding: 46px 20px 24px;
+    }
+
+    .footer-inner {
+      max-width: 1180px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr 0.9fr;
+      gap: 30px;
+    }
+
+    .footer h3,
+    .footer h4 {
+      margin-bottom: 14px;
+    }
+
+    .footer p,
+    .footer li,
+    .footer a {
+      color: #d1d5db;
+      font-size: 14px;
+    }
+
+    .footer ul {
+      list-style: none;
+    }
+
+    .footer li {
+      margin-bottom: 8px;
+    }
+
+    .copyright {
+      max-width: 1180px;
+      margin: 28px auto 0;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding-top: 18px;
+      color: #9ca3af;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner,
+      .chat-wrap,
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .quick-stats,
+      .stats-grid,
+      .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .nav-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .menu {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .quick-stats,
+      .stats-grid,
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .data-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+
+      .hero {
+        min-height: auto;
+      }
     }
   </style>
 </head>
 
 <body>
 
-<header>
-  <h1>CỔNG THÔNG TIN SỐ PHƯỜNG THÀNH SEN</h1>
-  <p>Chính quyền số - Kinh tế số - Xã hội số</p>
-</header>
-
-<nav>
-  <a href="#gioithieu">Giới thiệu</a>
-  <a href="#dichvucong">Dịch vụ công</a>
-  <a href="#bando">Bản đồ số</a>
-  <a href="#lienhe">Liên hệ</a>
-</nav>
-
-<div class="container">
-
-  <div class="card" id="gioithieu">
-    <h2>Giới thiệu</h2>
-    <p>
-      Phường Thành Sen đẩy mạnh chuyển đổi số, xây dựng chính quyền số,
-      phục vụ người dân và doanh nghiệp ngày càng tốt hơn.
-    </p>
-  </div>
-
-  <div class="grid">
-    <div class="card">
-      <h3>Dịch vụ công</h3>
-      <p>Hướng dẫn người dân thực hiện thủ tục hành chính trực tuyến.</p>
-    </div>
-
-    <div class="card">
-      <h3>Ứng dụng i-Hà Tĩnh</h3>
-      <p>Hỗ trợ cài đặt, sử dụng và gửi phản ánh hiện trường.</p>
-    </div>
-
-    <div class="card">
-      <h3>Bản đồ số</h3>
-      <p>Tra cứu tổ dân phố, địa điểm, cơ sở giáo dục, y tế, văn hóa.</p>
-    </div>
-
-    <div class="card">
-      <h3>Chợ số Thành Sen</h3>
-      <p>Hỗ trợ hộ kinh doanh, tiểu thương quảng bá sản phẩm và dịch vụ.</p>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div><i class="fa-solid fa-location-dot"></i> Phường Thành Sen, tỉnh Hà Tĩnh</div>
+      <div><i class="fa-solid fa-clock"></i> T2 - T6: 7:00 - 17:00</div>
     </div>
   </div>
 
-  <div class="card" id="lienhe">
-    <h2>Liên hệ</h2>
-    <p><strong>Đơn vị:</strong> UBND phường Thành Sen</p>
-    <p><strong>Địa chỉ:</strong> Phường Thành Sen, tỉnh Hà Tĩnh</p>
-    <p><strong>Điện thoại:</strong> Cập nhật sau</p>
-    <p><strong>Email:</strong> Cập nhật sau</p>
-  </div>
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a class="brand" href="#trangchu">
+        <div class="brand-logo"><i class="fa-solid fa-building-columns"></i></div>
+        <div class="brand-text">
+          UBND Phường Thành Sen
+          <small>Cổng thông tin số</small>
+        </div>
+      </a>
 
-</div>
+      <div class="menu">
+        <a href="#trangchu">Trang chủ</a>
+        <a href="#gioithieu">Giới thiệu</a>
+        <a href="#todantpho">Tổ dân phố</a>
+        <a href="#canbo">Cán bộ</a>
+        <a href="#dichvu">Dịch vụ số</a>
+        <a href="#troly">Trợ lý số</a>
+        <a href="#lienhe">Liên hệ</a>
+      </div>
+    </div>
+  </nav>
 
-<footer>
-  © 2026 UBND phường Thành Sen
-</footer>
+  <header class="hero" id="trangchu">
+    <div class="hero-inner">
+      <div>
+        <div class="badge">
+          <i class="fa-solid fa-wifi"></i>
+          Chính quyền điện tử • Chuyển đổi số
+        </div>
+
+        <h1>Chào mừng đến với<br><span>Phường Thành Sen - Hà Tĩnh</span></h1>
+
+        <p>
+          Cổng thông tin số phục vụ người dân và doanh nghiệp. Hỗ trợ tra cứu thông tin tổ dân phố,
+          cán bộ, dịch vụ công, bản đồ số, chợ số và các tiện ích chuyển đổi số của phường.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#todantpho">
+            <i class="fa-solid fa-map-location-dot"></i> Xem tổ dân phố
+          </a>
+          <a class="btn btn-light" href="#canbo">
+            <i class="fa-solid fa-address-book"></i> Danh bạ cán bộ
+          </a>
+          <a class="btn btn-light" href="#troly">
+            <i class="fa-solid fa-robot"></i> Hỏi trợ lý số
+          </a>
+        </div>
+
+        <div class="quick-stats">
+          <div class="quick-stat">
+            <strong>36</strong>
+            <span>Tổ dân phố</span>
+          </div>
+          <div class="quick-stat">
+            <strong>11.372</strong>
+            <span>Công dân cài i-Hà Tĩnh</span>
+          </div>
+          <div class="quick-stat">
+            <strong>296</strong>
+            <span>Phản ánh hiện trường</span>
+          </div>
+          <div class="quick-stat">
+            <strong>80</strong>
+            <span>Tổ chuyển đổi số cộng đồng</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3><i class="fa-solid fa-seedling"></i> Thành Sen số</h3>
+        <p>
+          Hướng tới nền hành chính hiện đại, minh bạch, lấy người dân làm trung tâm trong chuyển đổi số.
+        </p>
+
+        <ul>
+          <li><i class="fa-solid fa-check-circle"></i> Dịch vụ công trực tuyến</li>
+          <li><i class="fa-solid fa-check-circle"></i> Ứng dụng công dân số i-Hà Tĩnh</li>
+          <li><i class="fa-solid fa-check-circle"></i> Bản đồ số phường Thành Sen</li>
+          <li><i class="fa-solid fa-check-circle"></i> Chợ số Thành Sen</li>
+          <li><i class="fa-solid fa-check-circle"></i> Trợ lý số phục vụ người dân</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <section class="section" id="gioithieu">
+    <div class="section-heading">
+      <span class="eyebrow">Tổng quan</span>
+      <h2>Phường Thành Sen chuyển đổi số</h2>
+      <p>
+        Phường Thành Sen triển khai các nhiệm vụ chính quyền số, kinh tế số, xã hội số;
+        phát huy vai trò Tổ chuyển đổi số cộng đồng, thúc đẩy người dân sử dụng nền tảng số.
+      </p>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <i class="fa-solid fa-users"></i>
+        <strong>36</strong>
+        <span>Tổ dân phố</span>
+      </div>
+      <div class="stat-card">
+        <i class="fa-solid fa-mobile-screen"></i>
+        <strong>11.372</strong>
+        <span>Công dân cài i-Hà Tĩnh</span>
+      </div>
+      <div class="stat-card">
+        <i class="fa-solid fa-bullhorn"></i>
+        <strong>296</strong>
+        <span>Phản ánh đã tiếp nhận</span>
+      </div>
+      <div class="stat-card">
+        <i class="fa-solid fa-people-group"></i>
+        <strong>80</strong>
+        <span>Tổ CĐS cộng đồng</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="dichvu">
+    <div class="section-heading">
+      <span class="eyebrow">Tiện ích số</span>
+      <h2>Dịch vụ phục vụ người dân</h2>
+      <p>
+        Các tiện ích số hỗ trợ người dân, hộ kinh doanh và doanh nghiệp tiếp cận dịch vụ công,
+        phản ánh hiện trường, bản đồ số và chợ số.
+      </p>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <i class="fa-solid fa-file-signature"></i>
+        <h3>Dịch vụ công</h3>
+        <p>Hướng dẫn nộp hồ sơ trực tuyến, tra cứu kết quả và thực hiện thủ tục hành chính.</p>
+      </div>
+
+      <div class="feature-card">
+        <i class="fa-solid fa-mobile-screen-button"></i>
+        <h3>i-Hà Tĩnh</h3>
+        <p>Hỗ trợ cài đặt, sử dụng ứng dụng công dân số và gửi phản ánh hiện trường.</p>
+      </div>
+
+      <div class="feature-card">
+        <i class="fa-solid fa-map"></i>
+        <h3>Bản đồ số</h3>
+        <p>Tra cứu địa điểm, tổ dân phố, cơ sở giáo dục, y tế, văn hóa, hộ kinh doanh.</p>
+      </div>
+
+      <div class="feature-card">
+        <i class="fa-solid fa-store"></i>
+        <h3>Chợ số Thành Sen</h3>
+        <p>Hỗ trợ hộ kinh doanh quảng bá sản phẩm, dịch vụ và thông tin liên hệ.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="todantpho">
+    <div class="section-heading">
+      <span class="eyebrow">Dữ liệu địa bàn</span>
+      <h2>Danh sách tổ dân phố</h2>
+      <p>
+        Có thể thay tên tổ dân phố, cán bộ phụ trách, số điện thoại và ghi chú theo dữ liệu thực tế của phường.
+      </p>
+    </div>
+
+    <div class="filter-box">
+      <input type="text" id="searchTo" placeholder="Tìm tổ dân phố, cán bộ phụ trách..." oninput="renderToDanPho()">
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Tổ dân phố</th>
+          <th>Cán bộ phụ trách</th>
+          <th>Điện thoại</th>
+          <th>Ghi chú</th>
+        </tr>
+      </thead>
+      <tbody id="toTable"></tbody>
+    </table>
+  </section>
+
+  <section class="section" id="canbo">
+    <div class="section-heading">
+      <span class="eyebrow">Danh bạ điện tử</span>
+      <h2>Cán bộ phường</h2>
+      <p>
+        Danh bạ cán bộ, công chức, người phụ trách lĩnh vực phục vụ tra cứu nhanh cho người dân.
+      </p>
+    </div>
+
+    <div class="filter-box">
+      <input type="text" id="searchCanBo" placeholder="Tìm họ tên, chức vụ, lĩnh vực..." oninput="renderCanBo()">
+      <select id="filterChucVu" onchange="renderCanBo()">
+        <option value="">-- Tất cả chức danh --</option>
+        <option value="Lãnh đạo">Lãnh đạo</option>
+        <option value="Một cửa">Một cửa</option>
+        <option value="Chuyển đổi số">Chuyển đổi số</option>
+        <option value="Đô thị">Đô thị</option>
+        <option value="Văn hóa">Văn hóa</option>
+      </select>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Họ và tên</th>
+          <th>Chức vụ</th>
+          <th>Lĩnh vực</th>
+          <th>Điện thoại</th>
+        </tr>
+      </thead>
+      <tbody id="canBoTable"></tbody>
+    </table>
+  </section>
+
+  <section class="section" id="troly">
+    <div class="section-heading">
+      <span class="eyebrow">Trợ lý số</span>
+      <h2>Trợ lý số phường Thành Sen</h2>
+      <p>
+        Hỏi nhanh về tổ dân phố, cán bộ, dịch vụ công, i-Hà Tĩnh, bản đồ số, chợ số và phản ánh hiện trường.
+      </p>
+    </div>
+
+    <div class="chat-wrap">
+      <div class="chat-info">
+        <h3><i class="fa-solid fa-robot"></i> Gợi ý câu hỏi</h3>
+        <p>Người dân có thể nhập câu hỏi ngắn gọn hoặc bấm các mẫu bên dưới.</p>
+
+        <div class="suggestions">
+          <button onclick="setQuestion('Phường có bao nhiêu tổ dân phố?')">Bao nhiêu tổ dân phố?</button>
+          <button onclick="setQuestion('Hướng dẫn cài i-Hà Tĩnh')">Cài i-Hà Tĩnh</button>
+          <button onclick="setQuestion('Tôi muốn gửi phản ánh hiện trường')">Phản ánh hiện trường</button>
+          <button onclick="setQuestion('Bản đồ số phường Thành Sen')">Bản đồ số</button>
+          <button onclick="setQuestion('Chợ số Thành Sen là gì?')">Chợ số</button>
+          <button onclick="setQuestion('Liên hệ UBND phường')">Liên hệ</button>
+        </div>
+      </div>
+
+      <div class="chat-box">
+        <h3>Nhập câu hỏi</h3>
+        <div class="chat-input">
+          <input type="text" id="question" placeholder="Ví dụ: Tôi muốn làm dịch vụ công trực tuyến..." onkeydown="if(event.key==='Enter') askAI()">
+          <button onclick="askAI()">Gửi</button>
+        </div>
+        <div class="answer" id="answer">
+          Xin chào! Tôi là trợ lý số phường Thành Sen. Bạn có thể hỏi về dịch vụ công, i-Hà Tĩnh, phản ánh hiện trường, bản đồ số, chợ số hoặc thông tin liên hệ.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" id="lienhe">
+    <div class="footer-inner">
+      <div>
+        <h3>ỦY BAN NHÂN DÂN PHƯỜNG THÀNH SEN</h3>
+        <p>
+          Cổng thông tin số phục vụ người dân và doanh nghiệp trên địa bàn phường Thành Sen, tỉnh Hà Tĩnh.
+        </p>
+      </div>
+
+      <div>
+        <h4>Liên kết nhanh</h4>
+        <ul>
+          <li><a href="#trangchu">Trang chủ</a></li>
+          <li><a href="#todantpho">Tổ dân phố</a></li>
+          <li><a href="#canbo">Cán bộ</a></li>
+          <li><a href="#troly">Trợ lý số</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Liên hệ</h4>
+        <ul>
+          <li><i class="fa-solid fa-location-dot"></i> Phường Thành Sen, tỉnh Hà Tĩnh</li>
+          <li><i class="fa-solid fa-phone"></i> Cập nhật số điện thoại</li>
+          <li><i class="fa-solid fa-envelope"></i> Cập nhật email công vụ</li>
+          <li><i class="fa-solid fa-clock"></i> T2 - T6: 7:00 - 17:00</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="copyright">
+      © 2026 UBND Phường Thành Sen - Hà Tĩnh. Cổng thông tin số phục vụ người dân và doanh nghiệp.
+    </div>
+  </footer>
+
+  <script>
+    const toDanPhoData = Array.from({ length: 36 }, function(_, i) {
+      return {
+        ten: "Tổ dân phố " + (i + 1),
+        canBo: "Cập nhật",
+        dienThoai: "Cập nhật",
+        ghiChu: "Dữ liệu đang cập nhật"
+      };
+    });
+
+    const canBoData = [
+      {
+        hoTen: "Cập nhật lãnh đạo phường",
+        chucVu: "Lãnh đạo UBND phường",
+        nhom: "Lãnh đạo",
+        linhVuc: "Phụ trách chung",
+        dienThoai: "Cập nhật"
+      },
+      {
+        hoTen: "Cập nhật cán bộ một cửa",
+        chucVu: "Công chức Bộ phận Một cửa",
+        nhom: "Một cửa",
+        linhVuc: "Tiếp nhận và trả kết quả thủ tục hành chính",
+        dienThoai: "Cập nhật"
+      },
+      {
+        hoTen: "Cập nhật cán bộ chuyển đổi số",
+        chucVu: "Công chức phụ trách chuyển đổi số",
+        nhom: "Chuyển đổi số",
+        linhVuc: "i-Hà Tĩnh, bản đồ số, dữ liệu số, truyền thông số",
+        dienThoai: "Cập nhật"
+      },
+      {
+        hoTen: "Cập nhật cán bộ đô thị",
+        chucVu: "Công chức địa chính - đô thị",
+        nhom: "Đô thị",
+        linhVuc: "Đất đai, xây dựng, trật tự đô thị",
+        dienThoai: "Cập nhật"
+      },
+      {
+        hoTen: "Cập nhật cán bộ văn hóa",
+        chucVu: "Công chức văn hóa - xã hội",
+        nhom: "Văn hóa",
+        linhVuc: "Văn hóa, xã hội, thông tin, tuyên truyền",
+        dienThoai: "Cập nhật"
+      }
+    ];
+
+    function normalizeText(str) {
+      return String(str || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+    }
+
+    function renderToDanPho() {
+      const keyword = normalizeText(document.getElementById("searchTo").value);
+      const tbody = document.getElementById("toTable");
+
+      const filtered = toDanPhoData.filter(item => {
+        const content = normalizeText(item.ten + " " + item.canBo + " " + item.dienThoai + " " + item.ghiChu);
+        return content.includes(keyword);
+      });
+
+      tbody.innerHTML = filtered.map((item, index) => `
+        <tr>
+          <td>${index + 1}</td>
+          <td><strong>${item.ten}</strong></td>
+          <td>${item.canBo}</td>
+          <td>${item.dienThoai}</td>
+          <td><span class="tag">${item.ghiChu}</span></td>
+        </tr>
+      `).join("");
+    }
+
+    function renderCanBo() {
+      const keyword = normalizeText(document.getElementById("searchCanBo").value);
+      const nhom = document.getElementById("filterChucVu").value;
+      const tbody = document.getElementById("canBoTable");
+
+      const filtered = canBoData.filter(item => {
+        const content = normalizeText(item.hoTen + " " + item.chucVu + " " + item.linhVuc + " " + item.dienThoai);
+        const matchKeyword = content.includes(keyword);
+        const matchNhom = !nhom || item.nhom === nhom;
+        return matchKeyword && matchNhom;
+      });
+
+      tbody.innerHTML = filtered.map((item, index) => `
+        <tr>
+          <td>${index + 1}</td>
+          <td><strong>${item.hoTen}</strong></td>
+          <td>${item.chucVu}</td>
+          <td>${item.linhVuc}</td>
+          <td>${item.dienThoai}</td>
+        </tr>
+      `).join("");
+    }
+
+    function setQuestion(text) {
+      document.getElementById("question").value = text;
+      askAI();
+    }
+
+    function askAI() {
+      const q = normalizeText(document.getElementById("question").value);
+      const answer = document.getElementById("answer");
+
+      if (!q.trim()) {
+        answer.innerHTML = "Vui lòng nhập nội dung cần hỏi.";
+        return;
+      }
+
+      if (q.includes("bao nhieu") && (q.includes("to dan pho") || q.includes("to dan"))) {
+        answer.innerHTML = "Phường Thành Sen hiện đang cập nhật dữ liệu 36 tổ dân phố trên cổng thông tin số. Bạn có thể xem danh sách tại mục <strong>Tổ dân phố</strong>.";
+      }
+      else if (q.includes("i ha tinh") || q.includes("ihatinh") || q.includes("i-ha tinh")) {
+        answer.innerHTML = "Ứng dụng <strong>i-Hà Tĩnh</strong> hỗ trợ người dân tiếp nhận thông tin, gửi phản ánh hiện trường và sử dụng các tiện ích số của tỉnh. Phường Thành Sen tiếp tục hướng dẫn người dân cài đặt và sử dụng ứng dụng.";
+      }
+      else if (q.includes("phan anh") || q.includes("hien truong")) {
+        answer.innerHTML = "Người dân có thể gửi phản ánh hiện trường qua ứng dụng <strong>i-Hà Tĩnh</strong>. Nội dung phản ánh sẽ được tiếp nhận, phân loại và xử lý theo quy định.";
+      }
+      else if (q.includes("dich vu cong") || q.includes("thu tuc") || q.includes("ho so")) {
+        answer.innerHTML = "Người dân có thể thực hiện thủ tục hành chính qua Cổng Dịch vụ công hoặc liên hệ Bộ phận Một cửa phường Thành Sen để được hướng dẫn nộp hồ sơ trực tuyến.";
+      }
+      else if (q.includes("ban do") || q.includes("dia diem")) {
+        answer.innerHTML = "Bản đồ số phường Thành Sen hỗ trợ tra cứu tổ dân phố, địa điểm công cộng, cơ sở giáo dục, y tế, văn hóa, hộ kinh doanh và dữ liệu phục vụ quản lý địa bàn.";
+      }
+      else if (q.includes("cho so") || q.includes("ho kinh doanh") || q.includes("tieu thuong")) {
+        answer.innerHTML = "Chợ số Thành Sen hỗ trợ hộ kinh doanh, tiểu thương và người dân đưa thông tin sản phẩm, dịch vụ, địa chỉ, số điện thoại và hình ảnh lên môi trường số.";
+      }
+      else if (q.includes("can bo") || q.includes("lien he") || q.includes("so dien thoai") || q.includes("email")) {
+        answer.innerHTML = "Bạn có thể xem thông tin tại mục <strong>Cán bộ</strong> hoặc <strong>Liên hệ</strong>. Các số điện thoại và email công vụ cần được cập nhật theo dữ liệu chính thức của phường.";
+      }
+      else if (q.includes("chu ky so")) {
+        answer.innerHTML = "Chữ ký số công dân được dùng để ký hồ sơ, biểu mẫu và giao dịch điện tử. Phường có thể phối hợp các đơn vị cung cấp dịch vụ để hướng dẫn người dân đăng ký, kích hoạt và sử dụng.";
+      }
+      else {
+        answer.innerHTML = "Trợ lý số chưa có dữ liệu cho câu hỏi này. Bạn có thể hỏi về: tổ dân phố, cán bộ, dịch vụ công, i-Hà Tĩnh, phản ánh hiện trường, bản đồ số, chợ số hoặc chữ ký số.";
+      }
+    }
+
+    renderToDanPho();
+    renderCanBo();
+  </script>
 
 </body>
 </html>
